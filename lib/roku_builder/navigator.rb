@@ -75,7 +75,7 @@ module RokuBuilder
     def nav(commands:)
       commands.each do |command|
         if @commands.has_key?(command)
-          conn = multipart_connection(port: 8060)
+          conn = multipart_connection(port: 80)
 
           path = "/keypress/#{@commands[command]}"
           @logger.debug("Send Command: "+path)
@@ -92,7 +92,7 @@ module RokuBuilder
     # @param text [String] The text to type on the device
     # @return [Boolean] Success
     def type(text:)
-      conn = multipart_connection(port: 8060)
+      conn = multipart_connection(port: 80)
       text.split(//).each do |c|
         path = "/keypress/LIT_#{CGI::escape(c)}"
         @logger.debug("Send Letter: "+path)

@@ -22,10 +22,10 @@ module RokuBuilder
         @logger.info "Deeplink:"
         @logger.info payload
         @logger.info "CURL:"
-        @logger.info "curl -d '' '#{@url}:8060#{path}'"
+        @logger.info "curl -d '' '#{@url}:80#{path}'"
       end
 
-      conn = multipart_connection(port: 8060)
+      conn = multipart_connection(port: 80)
 
       response = conn.post path
       return response.success?
@@ -35,7 +35,7 @@ module RokuBuilder
     # @param logger [Logger] System Logger
     def list()
       path = "/query/apps"
-      conn = multipart_connection(port: 8060)
+      conn = multipart_connection(port: 80)
       response = conn.get path
 
       if response.success?
