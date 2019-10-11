@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  name: branch-list
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@master
+  - name: Print GitHub Context # Debug step
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
+    run: echo "GitHub context is $GITHUB_CONTEXT"
+  - name: do branch-list
+    run: git branch -a
